@@ -80,26 +80,16 @@ int StringParserClass::getDataBetweenTags(char *pDataToSearchThru,
 	}
 
 	myVector.clear();
-
+	std::string data = "";
+	//TODO find data inbetween tags
+	int dataLength = strlen(pDataToSearchThru);
+//	for (int i = 0; i < dataLength; i++) {
+//		if (pDataToSearchThru[i] == pStartTag) {
+//			while (pDataToSearchThru[(i+1)!=pEndTag) {
+//
+//			}
+//		}
+//	}
 
 	return SUCCESS;
 }
-
-//void cleanup() {
-//
-//}
-
-////Searches a string starting at pStart for pTagToLookFor
-////returns:
-////SUCCESS  found pTagToLookFor, pStart points to beginning of tag and pEnd points to end of tag
-////FAIL did not find pTagToLookFor and pEnd points to 0
-////ERROR_TAGS_NULL if either pStart or pEnd is null
-//int findTag(char *pTagToLookFor, char *&pStart, char *&pEnd) {
-//	if (pStart == NULL || pEnd == NULL) {
-//		return ERROR_TAGS_NULL;
-//	}
-//
-//
-//
-//	return SUCCESS;
-//}
