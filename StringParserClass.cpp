@@ -26,7 +26,17 @@ StringParserClass::StringParserClass() {
 
 //call cleanup to release any allocated memory
 StringParserClass::~StringParserClass() {
-	//cleanup();
+	cleanup();
+}
+
+void StringParserClass::cleanup() {
+	if (pStartTag) {
+		delete pStartTag;
+	}
+
+	if (pEndTag) {
+		delete pEndTag;
+	}
 }
 
 //these are the start tag and the end tags that we want to find,
@@ -41,6 +51,14 @@ int StringParserClass::setTags(const char *pStart, const char *pEnd) {
 		return ERROR_TAGS_NULL;
 	}
 
+	int startLength = strlen(pStart);
+	pStartTag = new char[startLength + 1];
+	strncpy(pStartTag, pStart, startLength); //deep copy start
+
+	int endLength = strlen(pEnd);
+	pEndTag = new char[endLength + 1];
+	strncpy(pEndTag, pEnd, endLength); //deep copy end
+
 	return SUCCESS;
 }
 
@@ -53,6 +71,14 @@ int StringParserClass::setTags(const char *pStart, const char *pEnd) {
 //ERROR_DATA_NULL pDataToSearchThru is null
 int StringParserClass::getDataBetweenTags(char *pDataToSearchThru,
 		std::vector<std::string> &myVector) {
+	if (pStartTag == NULL || pEndTag == NULL) {
+		return ERROR_TAGS_NULL;
+	}
+
+	if (pDataToSearchThru == NULL) {
+		return ERROR_DATA_NULL;
+	}
+
 	myVector.clear();
 
 
